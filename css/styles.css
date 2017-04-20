@@ -1,0 +1,18 @@
+.container{
+    width: 960px;
+    margin: 0 auto;    
+    text-align: center
+}
+
+.game, .game-cell{
+    display: inline-block;
+}
+
+.game-fild{
+    font-size: 0;
+    background: beige
+}
+
+.game-cell{
+    
+}
