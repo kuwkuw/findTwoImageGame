@@ -14,12 +14,12 @@
                 console.error('Loading field size error', err);
                 return;
             }
+            options.fieldSize = respos;
             this._render(options);
         }.bind(this));
     }
 
-    Game.prototype._render = function (options) {
-        options.fieldSize = respos
+    Game.prototype._render = function (options) {        
             var gameField = new GameField(options);
             gameField.onMathed(this.onMathedHandler.bind(this));
             var timeCounter = new TiemCounter()
