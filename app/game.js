@@ -5,7 +5,7 @@
         }
         this._rootElement = document.querySelector(options.el);
 
-        this._init(options);
+        this._init(options);        
     }
 
     Game.prototype._init = function (options) {
@@ -14,14 +14,25 @@
                 console.error('Loading field size error', err);
                 return;
             }
-            options.fieldSize = respos
-            var gameField = new GameField(options);
-            gameField.onMathed(this.onMathedHandler);
-            this._rootElement.appendChild(gameField.getElement());
+            this._render(options);
         }.bind(this));
     }
 
-    Game.prototype.onMathedHandler = function (isEnd) {
+    Game.prototype._render = function (options) {
+        options.fieldSize = respos
+            var gameField = new GameField(options);
+            gameField.onMathed(this.onMathedHandler.bind(this));
+            var timeCounter = new TiemCounter()
+            this._rootElement.appendChild(timeCounter.getElement());
+            this._rootElement.appendChild(gameField.getElement());
+            this._timeCounter = timeCounter;
+            this._timeCounter.start();
+    }
+
+    Game.prototype.onMathedHandler = function (isEnd) {       
+        if(isEnd){
+             this._timeCounter.stop();
+        }
         console.log('is end', isEnd);
     }
 
