@@ -1,4 +1,6 @@
 (function () {
+    'use strict'
+
     function GameField(options) {
         this._cellsSize = options.cellsSize || 100;
         this._cells = [];
@@ -38,7 +40,7 @@
         return this._element;
     }
 
-    GameField.prototype.onMathed = function(callback){
+    GameField.prototype.onMathed = function (callback) {
         this.onMatchedHandler = callback;
     }
 
@@ -90,14 +92,14 @@
     }
 
     GameField.prototype.isEnd = function () {
-        for (var i = 0; i < this._cells.length; i++){
-            if(!this._cells[i].isMathed){
+        for (var i = 0; i < this._cells.length; i++) {
+            if (!this._cells[i].isMathed) {
                 return false;
-            }            
+            }
         }
         return true;
     }
-        
+
 
     window.GameField = GameField;
 

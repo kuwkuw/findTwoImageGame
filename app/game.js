@@ -1,11 +1,13 @@
 (function () {
+    'use strict'
+
     function Game(options) {
         if (!options.el) {
             throw new Error('[el] property is requered');
         }
         this._rootElement = document.querySelector(options.el);
 
-        this._init(options);        
+        this._init(options);
     }
 
     Game.prototype._init = function (options) {
@@ -19,19 +21,19 @@
         }.bind(this));
     }
 
-    Game.prototype._render = function (options) {        
-            var gameField = new GameField(options);
-            gameField.onMathed(this._onMathedHandler.bind(this));
-            var timeCounter = new TiemCounter()
-            this._rootElement.appendChild(timeCounter.getElement());
-            this._rootElement.appendChild(gameField.getElement());
-            this._timeCounter = timeCounter;
-            this._timeCounter.start();
+    Game.prototype._render = function (options) {
+        var gameField = new GameField(options);
+        gameField.onMathed(this._onMathedHandler.bind(this));
+        var timeCounter = new TiemCounter()
+        this._rootElement.appendChild(timeCounter.getElement());
+        this._rootElement.appendChild(gameField.getElement());
+        this._timeCounter = timeCounter;
+        this._timeCounter.start();
     }
 
-    Game.prototype._onMathedHandler = function (isEnd) {       
-        if(isEnd){
-             this._timeCounter.stop();
+    Game.prototype._onMathedHandler = function (isEnd) {
+        if (isEnd) {
+            this._timeCounter.stop();
         }
         console.log('is end', isEnd);
     }

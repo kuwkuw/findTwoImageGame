@@ -1,4 +1,6 @@
 (function () {
+    'use strict'
+
     function GameCell(size) {
         var element = document.createElement('div');
         element.classList.add('game-cell');
@@ -14,7 +16,7 @@
         }.bind(this);
         this._element.addEventListener('click', this.clicDelifat, false);
     }
-    
+
     GameCell.prototype.getElement = function () {
         return this._element;
     }
