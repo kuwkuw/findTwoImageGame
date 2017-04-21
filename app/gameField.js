@@ -82,13 +82,6 @@
         var count = 0
         while (!isMath) {
             var randomCellIndex = Math.floor(Math.random() * this._cells.length);
-
-            if (this._cells.length - 1 == randomCellIndex) {
-                console.log('geted last index', randomCellIndex)
-            }
-            if (this._cells.length == randomCellIndex) {
-                console.log('geted last index to bige', randomCellIndex)
-            }
             if (!this._cells[randomCellIndex].hasOwnProperty('image')) {
                 isMath = true;
                 return this._cells[randomCellIndex];
@@ -98,7 +91,7 @@
 
     GameField.prototype.isEnd = function () {
         for (var i = 0; i < this._cells.length; i++){
-            if(!this._cells[i].isMath){
+            if(!this._cells[i].isMathed){
                 return false;
             }            
         }
