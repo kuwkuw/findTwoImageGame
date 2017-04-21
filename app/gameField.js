@@ -1,55 +1,16 @@
 (function () {
     function GameField(options) {
-        if (!options.el) {
-            throw new Error('[el] property is requered');
-        }
         this._cellsSize = options.cellsSize || 100;
-        this._rootElement = document.querySelector(options.el);
         this._cells = [];
         this._selectedCells = [];
 
-        this._init(options.images);
+        this._init(options.images, options.fieldSize);
     }
 
-    GameField.prototype._init = function (images) {
-        this.loadFieldSize(function (err, respos) {
-            if (err) {
-                console.error('Loading field size error', err);
-                return;
-            }
-            this._fieldSize = respos;
-            this._renderField();
-            this._fillCells(images);
-
-        }.bind(this));
-    }
-
-    /**
-     * Get field size
-     */
-    GameField.prototype.loadFieldSize = function (callback) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://kde.link/test/get_field_size.php', true);
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState != 4) return;
-
-            if (xhr.status != 200) {
-                callback(xhr.statusText);
-            } else {
-                var date;
-                try {
-                    date = JSON.parse(xhr.responseText)
-                }
-                catch (error) {
-                    console.error(error);
-                }
-                callback(null, date);
-            }
-
-        }
-
-        xhr.send();
+    GameField.prototype._init = function (images, fieldSize) {        
+        this._fieldSize = fieldSize;
+        this._renderField();
+        this._fillCells(images);
     }
 
     /**
@@ -69,7 +30,12 @@
             this._cells.push(newCell);
         }
 
-        this._rootElement.appendChild(fieldElement);
+        // this._rootElement.appendChild(fieldElement);
+        this._element = fieldElement;
+    }
+
+    GameField.prototype.getElement = function () {
+        return this._element;
     }
 
     /**

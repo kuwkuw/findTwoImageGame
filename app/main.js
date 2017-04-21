@@ -11,7 +11,7 @@ var images = [
     'https://kde.link/test/9.png',
 ];
 
-var game = new GameField({
+var game = new Game({
     el: '.game',
     cellSize: 100,
     images : images

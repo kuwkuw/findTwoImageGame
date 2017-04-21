@@ -14,9 +14,7 @@
         }.bind(this);
         this._element.addEventListener('click', this.clicDelifat, false);
     }
-
-    GameCell.prototype.onClickHandler = function () { }
-
+    
     GameCell.prototype.getElement = function () {
         return this._element;
     }
