@@ -48,11 +48,16 @@
      * Handle click on game cell
      */
     GameField.prototype._cellClickHandler = function (cell) {
+        if(this._selectedCells.length == 1 && this._selectedCells[0].getElement().isSameNode(cell.getElement())){
+            return;
+        }
+
         if (2 === this._selectedCells.length) {
             this._selectedCells[0].hide();
             this._selectedCells[1].hide();
             this._selectedCells.length = 0;
         }
+        
         cell.show();
         this._selectedCells.push(cell)
         if (2 === this._selectedCells.length && this._selectedCells[0].image == this._selectedCells[1].image) {
