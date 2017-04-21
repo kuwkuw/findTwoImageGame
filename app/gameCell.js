@@ -2,8 +2,6 @@
     function GameCell(size) {
         var element = document.createElement('div');
         element.classList.add('game-cell');
-        element.style.width = size + 'px';
-        element.style.height = size + 'px';
         this._element = element;
     }
 
@@ -38,6 +36,7 @@
     GameCell.prototype.setMatched = function () {
         this.isMathed = true;
         this._element.removeEventListener('click', this.clicDelifat, false);
+        this._element.classList.add('matched')
         console.log('is matched');
     }
 

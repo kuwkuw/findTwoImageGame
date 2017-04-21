@@ -10,9 +10,17 @@
 
 .game-fild{
     font-size: 0;
-    background: beige
+    background: #f5f5dc;
+    outline: 2px solid;
 }
 
 .game-cell{
-    
+    width: 100px;
+    height: 100px;
+    outline: 1px solid;
+}
+
+.matched{
+    background-color: #3F51B5;
+    background-blend-mode: difference;
 }
