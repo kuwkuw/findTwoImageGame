@@ -16,10 +16,14 @@
             }
             options.fieldSize = respos
             var gameField = new GameField(options);
+            gameField.onMathed(this.onMathedHandler);
             this._rootElement.appendChild(gameField.getElement());
         }.bind(this));
     }
 
+    Game.prototype.onMathedHandler = function (isEnd) {
+        console.log('is end', isEnd);
+    }
 
     /**
     * Get field size

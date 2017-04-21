@@ -7,7 +7,7 @@
         this._init(options.images, options.fieldSize);
     }
 
-    GameField.prototype._init = function (images, fieldSize) {        
+    GameField.prototype._init = function (images, fieldSize) {
         this._fieldSize = fieldSize;
         this._renderField();
         this._fillCells(images);
@@ -38,6 +38,10 @@
         return this._element;
     }
 
+    GameField.prototype.onMathed = function(callback){
+        this.onMatchedHandler = callback;
+    }
+
     /**
      * Handle click on game cell
      */
@@ -53,6 +57,7 @@
             this._selectedCells[0].setMatched();
             this._selectedCells[1].setMatched();
             this._selectedCells.length = 0;
+            this.onMatchedHandler(this.isEnd());
         }
     }
 
@@ -90,6 +95,16 @@
             }
         }
     }
+
+    GameField.prototype.isEnd = function () {
+        for (var i = 0; i < this._cells.length; i++){
+            if(!this._cells[i].isMath){
+                return false;
+            }            
+        }
+        return true;
+    }
+        
 
     window.GameField = GameField;
 
