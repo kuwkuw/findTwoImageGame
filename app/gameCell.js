@@ -11,10 +11,13 @@
         if (!callback) {
             reutrn;
         }
-        this._element.addEventListener('click', function () {
+        this.clicDelifat = function () {
             callback(this);
-        }.bind(this), false);
+        }.bind(this);
+        this._element.addEventListener('click', this.clicDelifat, false);
     }
+
+    GameCell.prototype.onClickHandler = function () { }
 
     GameCell.prototype.getElement = function () {
         return this._element;
@@ -22,22 +25,21 @@
 
     GameCell.prototype.setImage = function (imageUrl) {
         this.image = imageUrl;
-        // var imgElement = document.createElement('img');
-        
     }
 
     GameCell.prototype.hide = function () {
         this._element.style.backgroundImage = '';
-     }
+    }
 
     GameCell.prototype.show = function () {
         this._element.style.backgroundImage = 'url(' + this.image + ')';
-     }
+    }
 
     GameCell.prototype.setMatched = function () {
         this.isMathed = true;
-        console.log('is matched')
-     }
+        this._element.removeEventListener('click', this.clicDelifat, false);
+        console.log('is matched');
+    }
 
     window.GameCell = GameCell;
 })();
