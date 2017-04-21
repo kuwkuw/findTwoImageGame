@@ -9,7 +9,7 @@
     }
 
     Game.prototype._init = function (options) {
-        this.loadFieldSize(function (err, respos) {
+        this._loadFieldSize(function (err, respos) {
             if (err) {
                 console.error('Loading field size error', err);
                 return;
@@ -21,7 +21,7 @@
 
     Game.prototype._render = function (options) {        
             var gameField = new GameField(options);
-            gameField.onMathed(this.onMathedHandler.bind(this));
+            gameField.onMathed(this._onMathedHandler.bind(this));
             var timeCounter = new TiemCounter()
             this._rootElement.appendChild(timeCounter.getElement());
             this._rootElement.appendChild(gameField.getElement());
@@ -29,7 +29,7 @@
             this._timeCounter.start();
     }
 
-    Game.prototype.onMathedHandler = function (isEnd) {       
+    Game.prototype._onMathedHandler = function (isEnd) {       
         if(isEnd){
              this._timeCounter.stop();
         }
@@ -39,7 +39,7 @@
     /**
     * Get field size
     */
-    Game.prototype.loadFieldSize = function (callback) {
+    Game.prototype._loadFieldSize = function (callback) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://kde.link/test/get_field_size.php', true);
 
