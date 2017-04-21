@@ -12,6 +12,7 @@
     font-size: 0;
     background: #f5f5dc;
     outline: 2px solid;
+    box-shadow: 6px 7px 13px 5px rgba(0, 0, 0, 0.29);
 }
 
 .game-cell{
@@ -23,4 +24,18 @@
 .matched{
     background-color: #3F51B5;
     background-blend-mode: difference;
+}
+
+.time-counter{
+    font-size: 35px;
+    color: #1402ff;
+    text-shadow: 1px 1px 9px black;
+}
+
+.game-status{
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #1402ff;
+    text-shadow: 2px 1px 8px black;
+    opacity: 0;
 }

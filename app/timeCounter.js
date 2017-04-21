@@ -12,7 +12,7 @@
         var secondsElemen = document.createElement('span');
         secondsElemen.innerText = 0;
         var colon = document.createTextNode(':');
-        element.classList.add('tiem-counter');
+        element.classList.add('time-counter');
         element.appendChild(minutsElemen);
         element.appendChild(colon);
         element.appendChild(secondsElemen);

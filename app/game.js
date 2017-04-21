@@ -26,14 +26,24 @@
         gameField.onMathed(this._onMathedHandler.bind(this));
         var timeCounter = new TiemCounter()
         this._rootElement.appendChild(timeCounter.getElement());
+        this._rootElement.appendChild(this._renderWinStatusContainer());
         this._rootElement.appendChild(gameField.getElement());
         this._timeCounter = timeCounter;
         this._timeCounter.start();
     }
 
+    Game.prototype._renderWinStatusContainer = function(){
+        var element = document.createElement('div');
+        element.classList.add('game-status');
+        element.innerText = 'You win!';
+        this._winNotificationElement = element;        
+        return this._winNotificationElement;
+    }
+
     Game.prototype._onMathedHandler = function (isEnd) {
         if (isEnd) {
             this._timeCounter.stop();
+            this._winNotificationElement.style.opacity = 1;
         }
         console.log('is end', isEnd);
     }
