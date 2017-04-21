@@ -24,9 +24,11 @@
     Game.prototype._render = function (options) {
         var gameField = new GameField(options);
         gameField.onMathed(this._onMathedHandler.bind(this));
+        gameField.onFalseTry(this._onFalseTryHanler.bind(this));
         var timeCounter = new TiemCounter()
         this._rootElement.appendChild(timeCounter.getElement());
         this._rootElement.appendChild(this._renderWinStatusContainer());
+        this._rootElement.appendChild(this._renderFalseTryCountContainer());
         this._rootElement.appendChild(gameField.getElement());
         this._timeCounter = timeCounter;
         this._timeCounter.start();
@@ -39,13 +41,23 @@
         this._winNotificationElement = element;        
         return this._winNotificationElement;
     }
+    Game.prototype._renderFalseTryCountContainer= function(){
+        var element = document.createElement('div');
+        element.classList.add('false-try-counter');
+        element.innerText = 0;
+        this._falseTryCounter = element;        
+        return this._falseTryCounter;
+    }
 
     Game.prototype._onMathedHandler = function (isEnd) {
         if (isEnd) {
             this._timeCounter.stop();
             this._winNotificationElement.style.opacity = 1;
         }
-        console.log('is end', isEnd);
+    }
+
+    Game.prototype._onFalseTryHanler = function () {
+        this._falseTryCounter.innerText = parseInt(this._falseTryCounter.innerText)+1;
     }
 
     /**
@@ -75,11 +87,6 @@
 
         xhr.send();
     }
-    // new GameField({
-    //     el: '.game',
-    //     cellSize: 100,
-    //     images: images
-    // });
 
     window.Game = Game;
 })();

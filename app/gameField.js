@@ -44,6 +44,10 @@
         this.onMatchedHandler = callback;
     }
 
+    GameField.prototype.onFalseTry = function(callback){
+        this._onFalseTryHanler = callback;
+    }
+
     /**
      * Handle click on game cell
      */
@@ -56,6 +60,7 @@
             this._selectedCells[0].hide();
             this._selectedCells[1].hide();
             this._selectedCells.length = 0;
+            this._onFalseTryHanler();
         }
         
         cell.show();
